@@ -96,7 +96,7 @@ class ConversionViewController: UIViewController {
     
     
     
-    func segmentedControlValueChanged(_ sender: UISegmentedControl){
+    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl){
         
         if sender.selectedSegmentIndex == 0 { //convert to metric
             

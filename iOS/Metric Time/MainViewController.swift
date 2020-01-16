@@ -36,14 +36,14 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
    
     
  
-    func updateTime() {
+    @objc func updateTime() {
         metricTimeDisplay?.text = metricClock.updateTime()
     }
  
         
  
-    func handleGesture(sender: UILongPressGestureRecognizer){
-        if sender.state == UIGestureRecognizerState.began {
+    @objc func handleGesture(sender: UILongPressGestureRecognizer){
+        if sender.state == UIGestureRecognizer.State.began {
             //remove the gesture recogniser so it doesnt get called while the Convertion view is segue-ing in...
             view.removeGestureRecognizer(gesture)
             let conversionView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "conversionView")
@@ -88,7 +88,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         For more on this watch the video here: https://developer.apple.com/videos/play/wwdc2014/236/
         */
         self.displayLink = CADisplayLink(target: self, selector: #selector(self.updateTime))
-        self.displayLink?.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
+        self.displayLink?.add(to: RunLoop.current, forMode: RunLoop.Mode.common)
         
     }
     

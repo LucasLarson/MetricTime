@@ -221,7 +221,7 @@ class MetricClock: UIView {
         context.translateBy(x: 0.0, y: self.bounds.height) //move down by its own height
         context.scaleBy(x: 1.0, y: -1.0)//flip in the Y direction over its top axis (presumably)
         
-        let textAttributes = [NSFontAttributeName:NUMBER_FONT!, NSForegroundColorAttributeName:CLOCK_TEXT_COLOR] as CFDictionary
+        let textAttributes = [NSAttributedString.Key        .font:NUMBER_FONT!, NSAttributedString.Key.foregroundColor:CLOCK_TEXT_COLOR] as CFDictionary
 
         // multiplier enables correcting numbering when fewer than 12 numbers are featured, e.g. 4 sides will display 12, 3, 6, 9 (formerly preceeded by a 270 degree adjustment... qué?)
         let multiplier = 12/10
@@ -231,7 +231,7 @@ class MetricClock: UIView {
             
             // create the attributed string
             let str = String(point.offset * multiplier)
-            let text = CFAttributedStringCreate(nil, str as CFString!, textAttributes)
+            let text = CFAttributedStringCreate(nil, str as CFString, textAttributes)
             
             
             // create the line of text
@@ -306,9 +306,9 @@ class MetricClock: UIView {
         secondLayer.lineWidth = CGFloat(SECOND_HAND_THICKNESS)
         
         //set line ending
-        hourLayer.lineCap = kCALineCapRound
-        minuteLayer.lineCap = kCALineCapRound
-        secondLayer.lineCap = kCALineCapRound
+        hourLayer.lineCap = CAShapeLayerLineCap.round
+        minuteLayer.lineCap = CAShapeLayerLineCap.round
+        secondLayer.lineCap = CAShapeLayerLineCap.round
         
         
         //set color
